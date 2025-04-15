@@ -1,0 +1,36 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- Add our web resources -->
+    <web-resource key="zt-bamboo-plugin-resources" name="zt-bamboo-plugin Web Resources">
+        <dependency>com.atlassian.plugin:ajs</dependency>
+        <resource type="download" name="zt-bamboo-plugin.css" location="/css/zt-bamboo-plugin.css"/>
+        <resource type="download" name="zt-bamboo-plugin.js" location="/js/zt-bamboo-plugin.js"/>
+        <resource type="download" name="images/" location="/images"/>
+        <context>zt-bamboo-plugin</context>
+    </web-resource>
+
+    <!-- Register the Vulnerability Scan Task -->
+    <taskType key="zt-vulnerability-scan-task"
+              name="Trigger Vulnerability Scan"
+              class="com.zerothreatai.plugins.tasks.VulnerabilityScanTask"
+              configurator-class="com.zerothreatai.plugins.tasks.VulnerabilityScanTaskConfigurator">
+        <description>Triggers a vulnerability scan and waits for results.</description>
+        <category>Security</category>
+        <!-- Specify the Freemarker view template for the task configuration -->
+        <resource type="freemarker" name="edit" location="/templates/task-config.ftl"/>
+        <configuration class="com.zerothreatai.plugins.tasks.VulnerabilityScanTaskConfigurator" />
+        <!-- Define input parameters for the task -->
+        <input-parameters>
+            <input name="deploymentUrl" label="Deployment URL" required="true"
+                   description="The URL of the Web Application to scan" type="string"/>
+        </input-parameters>
+
+    </taskType>
+</atlassian-plugin>
