@@ -9,11 +9,11 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <organization>
-        <name>ZeroThreat AI DAST Scanner</name>
+        <name>Zero Threat AI</name>
         <url>https://zerothreat.ai/</url>
     </organization>
 
-    <name>zt-bamboo</name>
+    <name>ZeroThreat AI DAST Scanner</name>
     <description>Scan for security issues in web applications/APIs.</description>
     <packaging>atlassian-plugin</packaging>
 

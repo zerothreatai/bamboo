@@ -10,14 +10,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class ScanResponse{
-    Number Status ;
-    String Message;
-    String Code;
-    Number ScanStatus;
-    String Url;
-}
-
 public class HttpUtils {
 
     private static final String SCAN_API_URL = "https://api.zerothreat.ai/api/scan/devops";
@@ -37,16 +29,16 @@ public class HttpUtils {
 
             // Use the older Gson API
             JsonObject jsonResponse = new JsonParser().parse(response).getAsJsonObject();
-            const scanResponse = new ScanResponse();
-            scanResponse.Status = jsonResponse.get("status")
-            scanResponse.Message = jsonResponse.get("message")
-            scanResponse.Code = jsonResponse.get("code")
-            scanResponse.ScanStatus = jsonResponse.get("scanStatus")
-            scanResponse.Url = jsonResponse.get("url")
-            return scanResponse
+            ScanResponse scanResponse = new ScanResponse();
+            scanResponse.Status = jsonResponse.get("status").getAsInt();
+            scanResponse.Message = jsonResponse.get("message").getAsString();
+            scanResponse.Code = jsonResponse.get("code").getAsString();
+            scanResponse.ScanStatus = jsonResponse.get("scanStatus").getAsInt();
+            scanResponse.Url = jsonResponse.get("url").getAsString();
+            return scanResponse;
         } catch (Exception e) {
             logger.addErrorLogEntry("Error initiating scan: " + e.getMessage());
-            return null;
+            return new ScanResponse(e.getMessage());
         }
     }
 

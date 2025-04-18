@@ -18,19 +18,15 @@
 
     <!-- Register the Vulnerability Scan Task -->
     <taskType key="zt-vulnerability-scan-task"
-              name="Trigger Vulnerability Scan"
+              name="Zero Threat AI Security Scan"
               class="com.zerothreatai.plugins.tasks.VulnerabilityScanTask"
               configurator-class="com.zerothreatai.plugins.tasks.VulnerabilityScanTaskConfigurator">
-        <description>Triggers a vulnerability scan and waits for results.</description>
+        <description>Secure your code proactively. Use the ZeroThreat AI Powered Web Application/API Security Scanner to perform Dynamic Application Security Testing (DAST). It enables comprehensive Dynamic Application Security Testing (DAST) to detect vulnerabilities, making findings readily available on the ZeroThreat Portal for review.</description>
         <category>Security</category>
         <!-- Specify the Freemarker view template for the task configuration -->
         <resource type="freemarker" name="edit" location="/templates/task-config.ftl"/>
         <configuration class="com.zerothreatai.plugins.tasks.VulnerabilityScanTaskConfigurator" />
         <!-- Define input parameters for the task -->
-        <input-parameters>
-            <input name="deploymentUrl" label="Deployment URL" required="true"
-                   description="The URL of the Web Application to scan" type="string"/>
-        </input-parameters>
 
     </taskType>
 </atlassian-plugin>
